@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ItemDaLista from "./ItemDaLista/ItemDaLista";
 import styled from "styled-components";
+import { useContatos } from "../../../hooks/useContatos";
 
 
 const ContatoTitulo = styled.h2`
@@ -27,15 +28,9 @@ const ContatoLista = styled.ul`
 
 function ListaDeContatos() {
   const [contatosAgrupados, setContatosAgrupados] = useState({});
+  const { contatos } = useContatos();
 
-  const contatosIniciais = [
-    {
-      "nome": "moni",
-      "telefone": "21321312",
-      "imagem": "https://pbs.twimg.com/profile_images/1872657693854330880/_QrIcSM__400x400.jpg",
-      "_id": 1
-    }
-  ]
+  const contatosIniciais = contatos;
 
   useEffect(() => {
     const agrupados = contatosIniciais.reduce((acumulador, contato) => {
@@ -55,7 +50,7 @@ function ListaDeContatos() {
       }, {});
 
     setContatosAgrupados(agrupadosOrdenados);
-  }, []);
+  }, [contatos]);
 
   return (
     <ContatosWrapper>
