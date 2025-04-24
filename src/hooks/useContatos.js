@@ -15,6 +15,7 @@ export const useContatos = () => {
     const addContatos = async (contato) => {
         return apiContatos.criar(contato).then((novoContato) => {
             setContatos((listaAntiga) => [...listaAntiga, novoContato]);
+            
             return novoContato;
         });
     }

@@ -25,7 +25,6 @@ const ContatoLista = styled.ul`
   margin: 0;
 `;
 
-
 function ListaDeContatos() {
   const [contatosAgrupados, setContatosAgrupados] = useState({});
   const { contatos } = useContatos();
