@@ -60,8 +60,8 @@ function ListaDeContatos() {
             <ContatoLista>
               {contatosAgrupados[letra].map((contato) => (
                 <ItemDaLista
-                  key={contato._id}
-                  id={contato._id}
+                  key={contato.id}
+                  id={contato.id}
                   nome={contato.nome}
                   telefone={contato.telefone}
                   imagem={contato.imagem}
