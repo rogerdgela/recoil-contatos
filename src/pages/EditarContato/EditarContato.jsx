@@ -7,6 +7,7 @@ import BotaoVoltar from "../../components/BotaoVoltar/BotaoVoltar";
 import Formulario from "../../components/Formulario/Formulario";
 import Titulo from "../../components/Titulo/Titulo";
 import Header from "../../components/Header/Header";
+import { useContatos } from "../../hooks/useContatos";
 
 
 function EditarContato() {
@@ -19,14 +20,7 @@ function EditarContato() {
     imagem: "",
   });
 
-  const contatos = [
-    {
-      "nome": "moni",
-      "telefone": "21321312",
-      "imagem": "https://pbs.twimg.com/profile_images/1872657693854330880/_QrIcSM__400x400.jpg",
-      "_id": 1
-    }
-  ]
+  const {contatos, atualizarContato} = useContatos();
 
 
   // Carregar dados do contato atual
@@ -34,6 +28,7 @@ function EditarContato() {
     const contatoAtual = contatos.find(
       (contato) => contato._id === parseInt(id)
     );
+    
     if (contatoAtual) {
       setDadosDoFormulario(contatoAtual);
     }
@@ -48,8 +43,14 @@ function EditarContato() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    console.log("Formulário enviado!");
+  const handleSubmit = (evento) => {
+    evento.preventDefault();
+
+    atualizarContato(id, dadosDoFormulario).then(() => {
+      navigate("/")
+    }).catch(() => {
+      console.error("Erro ao atualizar o contato")
+    })
   };
 
   return (

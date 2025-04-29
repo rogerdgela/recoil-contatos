@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ItemDaLista from "./ItemDaLista/ItemDaLista";
 import styled from "styled-components";
 import { useContatos } from "../../../hooks/useContatos";
@@ -25,9 +25,10 @@ const ContatoLista = styled.ul`
   margin: 0;
 `;
 
+
 function ListaDeContatos() {
   const [contatosAgrupados, setContatosAgrupados] = useState({});
-  const { contatos } = useContatos();
+  const {contatos} = useContatos();
 
   const contatosIniciais = contatos;
 
@@ -60,8 +61,8 @@ function ListaDeContatos() {
             <ContatoLista>
               {contatosAgrupados[letra].map((contato) => (
                 <ItemDaLista
-                  key={contato.id}
-                  id={contato.id}
+                  key={contato._id}
+                  id={contato._id}
                   nome={contato.nome}
                   telefone={contato.telefone}
                   imagem={contato.imagem}
