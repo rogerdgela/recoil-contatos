@@ -29,6 +29,12 @@ export function useContatos() {
         })
     }
 
+    const deletarContato = async (id) => {
+        return apiContatos.deletar(id).then(() => {
+            setContatos((listaAntiga) => listaAntiga.filter((contato) => contato._id !== id))
+        })
+    }
+
     useEffect(() => {
         fetchContatos();
     }, [])
@@ -37,6 +43,7 @@ export function useContatos() {
         contatos,
         fetchContatos,
         addContatos,
-        atualizarContato
+        atualizarContato,
+        deletarContato
     }
 }

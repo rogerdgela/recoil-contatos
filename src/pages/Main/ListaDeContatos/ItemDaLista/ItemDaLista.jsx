@@ -3,6 +3,7 @@ import styled from "styled-components";
 import editIcon from "../../../../assets/pencil-square.svg";
 import deleteIcon from "../../../../assets/trash.svg";
 import { NavLink } from "react-router-dom";
+import { useContatos } from "../../../../hooks/useContatos";
 
 const ListItem = styled.li`
   display: flex;
@@ -63,6 +64,18 @@ const BotaoEditar = styled(NavLink)`
 const BotaoExcluir = styled(BotaoBase)``;
 
 function ItemDaLista({ id, nome, telefone, imagem }) {
+const {deletarContato} = useContatos();
+  const confirmarRemocaoDoContato = () => {
+    const confirmarRemocao = window.confirm(
+      `Você tem certeza que deseja excluir o contato ${nome}?`
+    )
+
+    if (confirmarRemocao) {
+      deletarContato(id).then(() => alert(`Contato ${nome} foi deletado com sucesso!`))
+      .catch(() => alert(`Aconteceu uma falha em deletar o contato ${nome}!`))
+    }
+
+  }
 
   return (
     <ListItem>
@@ -77,7 +90,7 @@ function ItemDaLista({ id, nome, telefone, imagem }) {
         <BotaoEditar to={`/editar/${id}`}>
           <img src={editIcon} alt="Editar" />
         </BotaoEditar>
-        <BotaoExcluir >
+        <BotaoExcluir onClick={confirmarRemocaoDoContato}>
           <img src={deleteIcon} alt="Excluir" />
         </BotaoExcluir>
       </Icones>

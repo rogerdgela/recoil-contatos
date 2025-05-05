@@ -7,6 +7,8 @@ import ListaDeContatos from "./ListaDeContatos/ListaDeContatos";
 import contact from "../../assets/contacts.png";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { pesquisaState } from "../../atoms/contatosState";
 
 const ImagemContato = styled.img`
   width: 250px;
@@ -42,7 +44,7 @@ display: flex;
 
 function Main() {
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useRecoilState(pesquisaState);
 
   return (
     <Wrapper>

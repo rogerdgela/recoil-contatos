@@ -1,18 +1,10 @@
 {
   "contatos": [
     {
-      "nome": "moni",
-      "telefone": "21321312",
-      "imagem": "https://pbs.twimg.com/profile_images/1872657693854330880/_QrIcSM__400x400.jpg",
-      "_id": 1,
-      "id": 1
-    },
-    {
       "nome": "Gato bonifácio",
       "telefone": "21312321",
       "imagem": "https://blog-static.petlove.com.br/wp-content/uploads/2019/06/shutterstock_632318627.jpg",
-      "_id": 2,
-      "id": 2
+      "_id": 2
     }
   ]
 }

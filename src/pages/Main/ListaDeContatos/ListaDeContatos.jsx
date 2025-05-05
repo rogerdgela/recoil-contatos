@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ItemDaLista from "./ItemDaLista/ItemDaLista";
 import styled from "styled-components";
 import { useContatos } from "../../../hooks/useContatos";
+import { useRecoilValue } from "recoil";
+import { contatosFiltradosSelector, pesquisaState } from "../../../atoms/contatosState";
 
 
 const ContatoTitulo = styled.h2`
@@ -30,7 +32,10 @@ function ListaDeContatos() {
   const [contatosAgrupados, setContatosAgrupados] = useState({});
   const {contatos} = useContatos();
 
-  const contatosIniciais = contatos;
+  const contatosFiltrados = useRecoilValue(contatosFiltradosSelector)
+  const termoPesquisado = useRecoilValue(pesquisaState);
+
+  const contatosIniciais = contatosFiltrados;
 
   useEffect(() => {
     const agrupados = contatosIniciais.reduce((acumulador, contato) => {
@@ -50,7 +55,7 @@ function ListaDeContatos() {
       }, {});
 
     setContatosAgrupados(agrupadosOrdenados);
-  }, [contatos]);
+  }, [contatos, contatosFiltrados, termoPesquisado]);
 
   return (
     <ContatosWrapper>
